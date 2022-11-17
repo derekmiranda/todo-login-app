@@ -1,10 +1,35 @@
 @import "/src/styles/global";
 
+$icon-len: 1em;
+$pad: 4px;
+
+.wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  height: $icon-len;
+  left: calc(2 * $pad);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
 .input {
   @extend %font-family;
   @extend %border-radius;
 
   width: 100%;
   box-sizing: border-box;
-  padding: 4px;
+  padding: $pad;
+
+  &__hasIcon {
+    padding-left: calc(3 * $pad + $icon-len);
+  }
+
+  &::before {
+    content: "b";
+    display: inline-block;
+  }
 }
