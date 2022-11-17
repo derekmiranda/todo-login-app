@@ -24,6 +24,10 @@ $pad: 4px;
   box-sizing: border-box;
   padding: $pad;
 
+  &__invalid {
+    border: 1px solid $error;
+  }
+
   &__hasIcon {
     padding-left: calc(3 * $pad + $icon-len);
   }
