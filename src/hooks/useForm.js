@@ -5,7 +5,7 @@ function useForm({ fields = {}, handleSubmit = () => Promise.resolve() } = {}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const onSubmit = useCallback(
+  const onSubmitForm = useCallback(
     async (event) => {
       event.preventDefault();
       const canSubmit = Object.values(fields).every((field) => !field.invalid);
@@ -23,8 +23,16 @@ function useForm({ fields = {}, handleSubmit = () => Promise.resolve() } = {}) {
     [fields, loading]
   );
 
+  const resetState = useCallback(() => {
+    if (!loading) {
+      setData(null);
+      setError("");
+    }
+  }, [loading]);
+
   const submitProps = {
-    onSubmit,
+    onSubmit: onSubmitForm,
+    onChange: resetState,
   };
 
   return { data, loading, error, submitProps };
