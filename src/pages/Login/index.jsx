@@ -12,6 +12,7 @@ import LockIcon from "./components/Icons/Lock";
 import useFormField from "../../hooks/useFormField";
 import { validateEmail, validatePassword } from "../../validators";
 import useForm from "../../hooks/useForm";
+import { validateLogin } from "../../api/login";
 
 export const FORM_ID = "login-form";
 
@@ -26,18 +27,28 @@ const LoginPage = () => {
   const { error: passwordErrorMsg, inputProps: passwordProps } =
     passwordFormField;
 
+  const handleSubmit = useCallback(
+    () => validateLogin(emailProps.value, passwordProps.value),
+    [emailProps.value, passwordProps.value]
+  );
+
   const { loading, error, submitProps } = useForm({
     fields: {
       email: emailFormField,
       password: passwordFormField,
     },
-    handleSubmit: () => console.log("submitted"),
+    handleSubmit,
   });
 
   return (
     <Page>
       <h1>Rapptr Labs</h1>
-      <form id={FORM_ID} className={styles.form} {...submitProps}>
+      <form
+        id={FORM_ID}
+        name={FORM_ID}
+        className={styles.form}
+        {...submitProps}
+      >
         <FieldWrapper>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <FieldInput
