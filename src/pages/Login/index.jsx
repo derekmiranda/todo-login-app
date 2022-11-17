@@ -7,13 +7,14 @@ import Page from "/src/components/Page";
 import LoginButton from "./components/LoginButton";
 
 import styles from "./index.module.scss";
+import AccountIcon from "./components/Icons/Account";
+import LockIcon from "./components/Icons/Lock";
 
 export const FORM_ID = "login-form";
 
 const LoginPage = () => {
   const onFormSubmit = useCallback((event) => {
     event.preventDefault();
-    console.log("event", event);
   }, []);
 
   return (
@@ -22,11 +23,16 @@ const LoginPage = () => {
       <form id={FORM_ID} className={styles.form} onSubmit={onFormSubmit}>
         <FieldWrapper>
           <FieldLabel htmlFor="email">Email</FieldLabel>
-          <FieldInput id="email" name="email" />
+          <FieldInput id="email" name="email" icon={AccountIcon} />
         </FieldWrapper>
         <FieldWrapper>
           <FieldLabel htmlFor="password">Password</FieldLabel>
-          <FieldInput type="password" id="password" name="password" />
+          <FieldInput
+            type="password"
+            id="password"
+            name="password"
+            icon={LockIcon}
+          />
         </FieldWrapper>
         {/* TODO: use ... to indicate loading */}
         <LoginButton>Login</LoginButton>
