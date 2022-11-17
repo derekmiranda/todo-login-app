@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react";
 
 function useAuth() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // TODO: revert back to false
+  const [loggedIn, setLoggedIn] = useState(true);
   const login = useCallback(() => setLoggedIn(true), []);
   const logout = useCallback(() => setLoggedIn(false), []);
   return { loggedIn, login, logout };
