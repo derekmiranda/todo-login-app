@@ -10,11 +10,10 @@ function useForm({ fields = {}, handleSubmit = () => Promise.resolve() } = {}) {
       event.preventDefault();
       const canSubmit = Object.values(fields).every((field) => !field.invalid);
       if (!canSubmit || loading) return;
-
       setLoading(true);
       try {
-        const result = await handleSubmit();
-        setData(result);
+        const { data } = await handleSubmit();
+        setData(data);
       } catch (err) {
         setError(err);
       } finally {
