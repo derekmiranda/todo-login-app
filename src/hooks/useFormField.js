@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const defaultValidate = () => true;
+const defaultValidate = () => "";
 
 function useFormField({ validate = defaultValidate } = {}) {
   const [value, setValue] = useState("");
@@ -26,7 +26,7 @@ function useFormField({ validate = defaultValidate } = {}) {
     onBlur,
   };
 
-  return { error: showValidation ? error : "", inputProps };
+  return { invalid: !!error, error: showValidation ? error : "", inputProps };
 }
 
 export default useFormField;
