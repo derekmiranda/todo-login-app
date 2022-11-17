@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import FieldWrapper from "./components/Field/Wrapper";
 import FieldLabel from "./components/Field/Label";
@@ -16,7 +16,7 @@ import { validateLogin } from "../../api/login";
 
 export const FORM_ID = "login-form";
 
-const LoginPage = () => {
+const LoginPage = ({ login }) => {
   const emailFormField = useFormField({
     validate: validateEmail,
   });
@@ -32,13 +32,20 @@ const LoginPage = () => {
     [emailProps.value, passwordProps.value]
   );
 
-  const { loading, error, submitProps } = useForm({
+  const { data, loading, error, submitProps } = useForm({
     fields: {
       email: emailFormField,
       password: passwordFormField,
     },
     handleSubmit,
   });
+
+  // login if login validation successful
+  useEffect(() => {
+    if (data) {
+      login();
+    }
+  }, [data]);
 
   return (
     <Page>
@@ -76,6 +83,7 @@ const LoginPage = () => {
         <LoginButton disabled={loading}>
           {loading ? "..." : "Login"}
         </LoginButton>
+        {error && <p className={styles.form_error}>{error}</p>}
       </form>
     </Page>
   );
