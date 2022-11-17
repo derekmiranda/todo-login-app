@@ -2,7 +2,7 @@ import axios from "axios";
 
 import getLoginErrorMessage from "./getLoginErrorMessage";
 
-const LOGIN_API_URL = "http://dev.rapptrlabs.com/Tests/scripts/user-login.php";
+const LOGIN_API_URL = "https://dev.rapptrlabs.com/Tests/scripts/user-login.php";
 
 export const validateLogin = (email, password) => {
   const formData = new FormData();
