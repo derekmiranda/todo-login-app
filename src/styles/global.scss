@@ -1,2 +1,6 @@
 @import "./vars.scss";
 @import "./extends.scss";
+
+body {
+  @extend %font-family;
+}

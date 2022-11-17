@@ -1,0 +1,10 @@
+@import "/src/styles/global";
+
+.input {
+  @extend %font-family;
+  @extend %border-radius;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+}

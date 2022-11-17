@@ -1,0 +1,10 @@
+@import "/src/styles/global";
+
+.page {
+  width: min(375px, 100%);
+  margin: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
