@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import getLoginErrorMessage from "./getLoginErrorMessage";
+
 const LOGIN_API_URL = "http://dev.rapptrlabs.com/Tests/scripts/user-login.php";
 
 export const validateLogin = (email, password) => {
@@ -15,6 +17,6 @@ export const validateLogin = (email, password) => {
     })
     .then((response) => ({ data: response.data }))
     .catch((error) => {
-      throw error.message;
+      throw getLoginErrorMessage(error);
     });
 };
