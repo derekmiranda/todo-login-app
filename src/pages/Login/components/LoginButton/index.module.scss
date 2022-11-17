@@ -10,4 +10,8 @@
   font-size: 1em;
   padding: 4px;
   margin-top: 16px;
+
+  &:disabled {
+    opacity: 50%;
+  }
 }
