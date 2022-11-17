@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import styles from "./Input.module.scss";
 
-const FieldInput = ({ children, icon: Icon, ...props }) => {
+const FieldInput = ({ children, icon: Icon, error = "", ...props }) => {
   return (
     <div className={styles.wrapper}>
       {Icon && <Icon className={styles.icon} />}
@@ -14,6 +14,7 @@ const FieldInput = ({ children, icon: Icon, ...props }) => {
         })}
         {...props}
       />
+      {error && <p className={styles.input_errorMsg}>{error}</p>}
     </div>
   );
 };

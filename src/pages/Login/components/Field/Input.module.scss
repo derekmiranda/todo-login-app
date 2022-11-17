@@ -5,6 +5,7 @@ $pad: 4px;
 
 .wrapper {
   position: relative;
+  margin-bottom: 1em;
 }
 
 .icon {
@@ -32,8 +33,10 @@ $pad: 4px;
     padding-left: calc(3 * $pad + $icon-len);
   }
 
-  &::before {
-    content: "b";
-    display: inline-block;
+  &_errorMsg {
+    position: absolute;
+    color: $error;
+    font-size: 0.75em;
+    margin: 0;
   }
 }
