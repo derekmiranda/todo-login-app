@@ -11,24 +11,33 @@ import AccountIcon from "./components/Icons/Account";
 import LockIcon from "./components/Icons/Lock";
 import useFormField from "../../hooks/useFormField";
 import { validateEmail, validatePassword } from "../../validators";
+import useForm from "../../hooks/useForm";
 
 export const FORM_ID = "login-form";
 
 const LoginPage = () => {
-  const { error: emailErrorMsg, inputProps: emailProps } = useFormField({
+  const emailFormField = useFormField({
     validate: validateEmail,
   });
-  const { error: passwordErrorMsg, inputProps: passwordProps } = useFormField({
+  const passwordFormField = useFormField({
     validate: validatePassword,
   });
-  const onFormSubmit = useCallback((event) => {
-    event.preventDefault();
-  }, []);
+  const { error: emailErrorMsg, inputProps: emailProps } = emailFormField;
+  const { error: passwordErrorMsg, inputProps: passwordProps } =
+    passwordFormField;
+
+  const { loading, error, submitProps } = useForm({
+    fields: {
+      email: emailFormField,
+      password: passwordFormField,
+    },
+    handleSubmit: () => console.log("submitted"),
+  });
 
   return (
     <Page>
       <h1>Rapptr Labs</h1>
-      <form id={FORM_ID} className={styles.form} onSubmit={onFormSubmit}>
+      <form id={FORM_ID} className={styles.form} {...submitProps}>
         <FieldWrapper>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <FieldInput
@@ -53,7 +62,9 @@ const LoginPage = () => {
           />
         </FieldWrapper>
         {/* TODO: use ... to indicate loading */}
-        <LoginButton>Login</LoginButton>
+        <LoginButton disabled={loading}>
+          {loading ? "..." : "Login"}
+        </LoginButton>
       </form>
     </Page>
   );
