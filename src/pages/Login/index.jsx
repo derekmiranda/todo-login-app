@@ -10,13 +10,16 @@ import styles from "./index.module.scss";
 import AccountIcon from "./components/Icons/Account";
 import LockIcon from "./components/Icons/Lock";
 import useFormField from "../../hooks/useFormField";
-import { validateEmail } from "../../validators";
+import { validateEmail, validatePassword } from "../../validators";
 
 export const FORM_ID = "login-form";
 
 const LoginPage = () => {
   const { error: emailErrorMsg, inputProps: emailProps } = useFormField({
     validate: validateEmail,
+  });
+  const { error: passwordErrorMsg, inputProps: passwordProps } = useFormField({
+    validate: validatePassword,
   });
   const onFormSubmit = useCallback((event) => {
     event.preventDefault();
@@ -45,6 +48,8 @@ const LoginPage = () => {
             name="password"
             placeholder="Must be at least 4 characters"
             icon={LockIcon}
+            error={passwordErrorMsg}
+            {...passwordProps}
           />
         </FieldWrapper>
         {/* TODO: use ... to indicate loading */}
