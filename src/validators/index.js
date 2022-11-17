@@ -12,16 +12,16 @@ export const validateEmail = (password) => {
   if (!EMAIL_REGEX.test(password)) {
     return "Not a valid password";
   } else if (password.length > MAX_EMAIL_CHARS) {
-    return `Must be under ${MAX_EMAIL_CHARS} characters`;
+    return `Must be at most ${MAX_EMAIL_CHARS} characters`;
   }
   return "";
 };
 
 export const validatePassword = (password) => {
-  if (password.length > MIN_PASSWORD_CHARS) {
-    return `Must be over ${MIN_PASSWORD_CHARS} characters`;
+  if (password.length < MIN_PASSWORD_CHARS) {
+    return `Must be at least ${MIN_PASSWORD_CHARS} characters`;
   } else if (password.length > MAX_PASSWORD_CHARS) {
-    return `Must be under ${MAX_PASSWORD_CHARS} characters`;
+    return `Must be at most ${MAX_PASSWORD_CHARS} characters`;
   }
   return "";
 };
