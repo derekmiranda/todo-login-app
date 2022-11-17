@@ -17,9 +17,7 @@ function useFormField({ validate = defaultValidate } = {}) {
   }, []);
 
   const onBlur = useCallback(() => {
-    if (value) {
-      setShowValidation(true);
-    }
+    setShowValidation(true);
   }, [value]);
 
   const inputProps = {
