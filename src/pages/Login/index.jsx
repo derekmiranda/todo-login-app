@@ -64,6 +64,7 @@ const LoginPage = ({ login }) => {
             placeholder="user@rapptrlabs.com"
             icon={AccountIcon}
             error={emailErrorMsg}
+            disabled={loading}
             {...emailProps}
           />
         </FieldWrapper>
@@ -76,11 +77,12 @@ const LoginPage = ({ login }) => {
             placeholder="Must be at least 4 characters"
             icon={LockIcon}
             error={passwordErrorMsg}
+            disabled={loading}
             {...passwordProps}
           />
         </FieldWrapper>
         {/* TODO: use ... to indicate loading */}
-        <LoginButton disabled={loading}>
+        <LoginButton disabled={loading || !!error}>
           {loading ? "..." : "Login"}
         </LoginButton>
         {error && <p className={styles.form_error}>{error}</p>}
