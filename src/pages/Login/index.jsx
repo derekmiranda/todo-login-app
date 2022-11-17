@@ -9,10 +9,15 @@ import LoginButton from "./components/LoginButton";
 import styles from "./index.module.scss";
 import AccountIcon from "./components/Icons/Account";
 import LockIcon from "./components/Icons/Lock";
+import useFormField from "../../hooks/useFormField";
+import { validateEmail } from "../../validators";
 
 export const FORM_ID = "login-form";
 
 const LoginPage = () => {
+  const { error: emailErrorMsg, inputProps: emailProps } = useFormField({
+    validate: validateEmail,
+  });
   const onFormSubmit = useCallback((event) => {
     event.preventDefault();
   }, []);
@@ -23,7 +28,14 @@ const LoginPage = () => {
       <form id={FORM_ID} className={styles.form} onSubmit={onFormSubmit}>
         <FieldWrapper>
           <FieldLabel htmlFor="email">Email</FieldLabel>
-          <FieldInput id="email" name="email" icon={AccountIcon} />
+          <FieldInput
+            id="email"
+            name="email"
+            placeholder="user@rapptrlabs.com"
+            icon={AccountIcon}
+            error={emailErrorMsg}
+            {...emailProps}
+          />
         </FieldWrapper>
         <FieldWrapper>
           <FieldLabel htmlFor="password">Password</FieldLabel>
@@ -31,6 +43,7 @@ const LoginPage = () => {
             type="password"
             id="password"
             name="password"
+            placeholder="Must be at least 4 characters"
             icon={LockIcon}
           />
         </FieldWrapper>
