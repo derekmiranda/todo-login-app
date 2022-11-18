@@ -1,11 +1,6 @@
 @import "/src/styles/global";
 
-.logoutButton {
-  @extend %button;
-
-  position: absolute;
-  right: 32px;
-  color: $black;
-  background-color: $white;
-  align-self: flex-end;
+.list {
+  padding: 0;
+  margin: 0;
 }

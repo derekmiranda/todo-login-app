@@ -6,6 +6,7 @@ import InputWithIcon from "/src/components/InputWithIcon";
 import useTodos from "/src/hooks/useTodos";
 
 import styles from "./index.module.scss";
+import TodosList from "./components/TodosList";
 
 const TodosPage = ({ logout }) => {
   const { filter, updateFilter } = useTodos();
@@ -23,6 +24,7 @@ const TodosPage = ({ logout }) => {
           <InputWithIcon value={filter} onChange={onFilterChange} />
           <button className={styles.newBtn}>New</button>
         </div>
+        <TodosList />
       </div>
     </Page>
   );
