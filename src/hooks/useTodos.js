@@ -10,8 +10,8 @@ todo:
 - task: string
 */
 
-function useTodos() {
-  const [allTodos, setAllTodos] = useImmer([]);
+function useTodos(initialState = []) {
+  const [allTodos, setAllTodos] = useImmer(initialState);
   const [filter, setFilter] = useState("");
 
   const filteredTodos = useMemo(() => {

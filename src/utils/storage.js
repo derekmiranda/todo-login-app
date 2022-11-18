@@ -1,17 +1,17 @@
 const storage = window.localStorage;
 
-const getData = (key) => {
+const getStorageItem = (key, defaultItem = {}) => {
   if (!storage) return;
   try {
-    return JSON.parse(storage.get(key) || "{}");
+    return JSON.parse(storage.getItem(key) || "null") || defaultItem;
   } catch {
-    return {};
+    return defaultItem;
   }
 };
 
-const setData = (key, data) => {
+const setStorageItem = (key, item) => {
   if (!storage) return;
-  return storage.set(key, JSON.stringify(data));
+  return storage.setItem(key, JSON.stringify(item));
 };
 
-export { getData, setData };
+export { getStorageItem, setStorageItem };

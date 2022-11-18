@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Page from "/src/components/Page";
 import LogoutButton from "./components/LogoutButton";
@@ -8,16 +8,23 @@ import TodosList from "./components/TodosList";
 import UpsertTodo from "./components/UpsertTodo";
 import styles from "./index.module.scss";
 import useUpsertTodo from "./components/UpsertTodo/useUpsertTodo";
+import { getStorageItem, setStorageItem } from "/src/utils/storage";
+import { TODOS_STORAGE_KEY } from "/src/constants";
 
 const TodosPage = ({ logout }) => {
   const {
+    allTodos,
     filteredTodos,
     addTodo,
     removeTodo,
     updateTodo,
     filter,
     updateFilter,
-  } = useTodos();
+  } = useTodos(getStorageItem(TODOS_STORAGE_KEY, []));
+
+  useEffect(() => {
+    setStorageItem(TODOS_STORAGE_KEY, allTodos);
+  }, [allTodos]);
 
   const todosListProps = {
     todos: filteredTodos,
