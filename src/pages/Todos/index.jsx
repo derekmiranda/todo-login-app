@@ -5,9 +5,9 @@ import LogoutButton from "./components/LogoutButton";
 import InputWithIcon from "/src/components/InputWithIcon";
 import useTodos from "/src/hooks/useTodos";
 import TodosList from "./components/TodosList";
-import UpsertTodo from "./components/TodosList/components/UpsertTodo";
-import { MAX_TODO_LEN } from "/src/constants";
+import UpsertTodo from "./components/UpsertTodo";
 import styles from "./index.module.scss";
+import useUpsertTodo from "./components/UpsertTodo/useUpsertTodo";
 
 const TodosPage = ({ logout }) => {
   const {
@@ -26,22 +26,9 @@ const TodosPage = ({ logout }) => {
     updateTodo,
   };
 
-  const [newTodo, setNewTodo] = useState("");
-
-  const onTodoChange = useCallback((task) => {
-    if (task.length <= MAX_TODO_LEN) {
-      setNewTodo(task);
-    }
-  }, []);
-
-  const saveNewTodo = useCallback(() => {
-    addTodo(newTodo);
-    resetNewTodo();
-  }, [newTodo]);
-
-  const resetNewTodo = useCallback(() => {
-    setNewTodo("");
-  }, []);
+  const { newTodo, onTodoChange, saveNewTodo, resetNewTodo } = useUpsertTodo({
+    addTodo,
+  });
 
   const onFilterChange = useCallback((event) => {
     updateFilter(event.target.value);
