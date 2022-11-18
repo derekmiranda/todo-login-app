@@ -4,6 +4,7 @@ import FieldWrapper from "./components/Field/Wrapper";
 import FieldLabel from "./components/Field/Label";
 import FieldInput from "./components/Field/Input";
 import Page from "/src/components/Page";
+import Header from "/src/components/Header";
 import LoginButton from "./components/LoginButton";
 
 import styles from "./index.module.scss";
@@ -49,6 +50,7 @@ const LoginPage = ({ login }) => {
 
   return (
     <Page>
+      <Header />
       <h1>Rapptr Labs</h1>
       <form
         id={FORM_ID}
