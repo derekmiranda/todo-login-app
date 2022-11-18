@@ -1,7 +1,7 @@
 @import "/src/styles/global";
 
 .form {
-  width: 240px;
+  width: $content-width;
 
   &_error {
     @extend %error-text;
