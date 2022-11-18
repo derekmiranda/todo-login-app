@@ -4,8 +4,10 @@
   @extend %border-radius;
 
   width: $content-width;
+  height: 400px;
   border: 1px solid $black;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: scroll;
 }
 
 .topRow {
