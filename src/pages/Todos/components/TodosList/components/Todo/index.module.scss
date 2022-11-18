@@ -8,6 +8,7 @@
   padding: $pad;
 
   &_input {
+    @extend %font-family;
     min-width: 0;
   }
 }
