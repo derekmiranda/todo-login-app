@@ -1,1 +1,15 @@
 @import "/src/styles/global";
+
+.wrapper {
+  @extend %border-radius;
+
+  width: $content-width;
+  border: 1px solid $black;
+  overflow: clip;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  padding: calc(2 * $pad);
+}
