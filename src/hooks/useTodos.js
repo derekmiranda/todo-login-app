@@ -9,13 +9,18 @@ todo:
 - task: string
 */
 
+const TEST_TODOS = [
+  { id: 1, task: "do code" },
+  { id: 2, task: "drink coffee" },
+];
+
 function useTodos() {
   const [allTodos, setAllTodos] = useImmer([]);
   const [filter, setFilter] = useState("");
 
   const filteredTodos = useMemo(() => {
     return allTodos.filter((todo) => {
-      return todo.message.includes(filter);
+      return todo.task.includes(filter);
     });
   }, [filter, allTodos]);
 
@@ -35,10 +40,10 @@ function useTodos() {
     });
   }, []);
 
-  const updateTodo = useCallback((id, message) => {
+  const updateTodo = useCallback((id, task) => {
     setAllTodos((draft) => {
       const todo = draft.find((todo) => todo.id === id);
-      todo.message = message;
+      todo.task = task;
     });
   }, []);
 

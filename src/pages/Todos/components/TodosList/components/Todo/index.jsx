@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 const Todo = ({ todo }) => {
   return (
     <li className={styles.todo}>
-      <input type="text" value={todo.message} className={styles.todo_input} />
+      <input type="text" value={todo.task} className={styles.todo_input} />
       <button>Edit</button>
       <button>Remove</button>
     </li>
