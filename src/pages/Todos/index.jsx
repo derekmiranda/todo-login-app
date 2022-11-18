@@ -30,6 +30,21 @@ const TodosPage = ({ logout }) => {
     addTodo,
   });
 
+  const [writingNewTodo, setWritingNewTodo] = useState(false);
+
+  const toggleWritingNewTodo = useCallback(() => {
+    if (writingNewTodo) {
+      resetNewTodo();
+    }
+    setWritingNewTodo(!writingNewTodo);
+  }, [writingNewTodo, resetNewTodo]);
+
+  const saveAndResetStates = useCallback(() => {
+    setWritingNewTodo(false);
+    updateFilter("");
+    saveNewTodo();
+  }, [saveNewTodo, updateFilter]);
+
   const onFilterChange = useCallback((event) => {
     updateFilter(event.target.value);
   }, []);
@@ -45,14 +60,18 @@ const TodosPage = ({ logout }) => {
             value={filter}
             onChange={onFilterChange}
           />
-          <button className={styles.newBtn}>New</button>
+          <button className={styles.newBtn} onClick={toggleWritingNewTodo}>
+            New
+          </button>
         </div>
-        <UpsertTodo
-          task={newTodo}
-          onChange={onTodoChange}
-          onSave={saveNewTodo}
-          onReset={resetNewTodo}
-        />
+        {writingNewTodo && (
+          <UpsertTodo
+            task={newTodo}
+            onChange={onTodoChange}
+            onSave={saveAndResetStates}
+            onReset={resetNewTodo}
+          />
+        )}
         <TodosList {...todosListProps} />
       </div>
     </Page>
