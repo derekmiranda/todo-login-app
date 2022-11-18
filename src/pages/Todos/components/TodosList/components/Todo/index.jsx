@@ -1,9 +1,25 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
+import { MAX_TODO_LEN } from "/src/constants";
 import styles from "./index.module.scss";
 
 const Todo = ({ todo, onRemove, onUpdate }) => {
   const inputRef = useRef(null);
+  const [tempTask, setTempTask] = useState(todo.task);
+
+  const commitTask = useCallback(() => {
+    if (tempTask) {
+      onUpdate(todo.id, tempTask);
+      return;
+    }
+    setTempTask(todo.task);
+  }, [tempTask, onUpdate]);
+
+  const onChange = useCallback((event) => {
+    if (event.target.value.length <= MAX_TODO_LEN) {
+      setTempTask(event.target.value);
+    }
+  }, []);
 
   const focusInput = useCallback(() => {
     if (inputRef.current) {
@@ -16,9 +32,10 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
       <input
         type="text"
         ref={inputRef}
-        value={todo.task}
+        value={tempTask}
         className={styles.todo_input}
-        onChange={onUpdate}
+        onChange={onChange}
+        onBlur={commitTask}
         data-update-id={todo.id}
       />
       <button onClick={focusInput}>Edit</button>

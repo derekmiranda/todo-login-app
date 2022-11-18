@@ -2,17 +2,13 @@ import { useCallback, useMemo, useState } from "react";
 import { useImmer } from "use-immer";
 
 import { generateId } from "/src/utils";
+import { MAX_TODO_LEN } from "/src/constants";
 
 /* 
 todo:
 - id: number
 - task: string
 */
-
-const TEST_TODOS = [
-  { id: 1, task: "do code" },
-  { id: 2, task: "drink coffee" },
-];
 
 function useTodos() {
   const [allTodos, setAllTodos] = useImmer([]);
@@ -41,10 +37,12 @@ function useTodos() {
   }, []);
 
   const updateTodo = useCallback((id, task) => {
-    setAllTodos((draft) => {
-      const todo = draft.find((todo) => todo.id === id);
-      todo.task = task;
-    });
+    if (task.length <= MAX_TODO_LEN) {
+      setAllTodos((draft) => {
+        const todo = draft.find((todo) => todo.id === id);
+        todo.task = task;
+      });
+    }
   }, []);
 
   const updateFilter = useCallback((newFilter) => {
