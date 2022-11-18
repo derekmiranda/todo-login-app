@@ -11,14 +11,17 @@ const UpsertTodo = ({ task, onChange, onSave }) => {
     onChange(event.target.value);
   }, []);
 
-  const handleKeyDown = useCallback((event) => {
-    if (event.key === "Enter") {
-      onSave();
-    }
-  }, []);
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === "Enter" && canSave) {
+        onSave();
+      }
+    },
+    [onSave, canSave]
+  );
 
   return (
-    <div className={styles.upsert}>
+    <form className={styles.upsert}>
       <input
         type="text"
         value={task}
@@ -29,7 +32,7 @@ const UpsertTodo = ({ task, onChange, onSave }) => {
       <button onClick={onSave} disabled={!canSave}>
         Save
       </button>
-    </div>
+    </form>
   );
 };
 
