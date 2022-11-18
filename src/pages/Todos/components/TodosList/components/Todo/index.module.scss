@@ -11,6 +11,7 @@
     @extend %font-family;
     min-width: 0;
     border: none;
+    text-overflow: ellipsis;
 
     &:active {
       border: auto;
