@@ -1,17 +1,8 @@
 @import "/src/styles/global";
 
 .loginButton {
-  @extend %font-family;
-  @extend %border-radius;
+  @extend %button;
 
   width: 100%;
-  background-color: $button;
-  color: $white;
-  font-size: 1em;
-  padding: 4px;
   margin-top: 16px;
-
-  &:disabled {
-    opacity: 50%;
-  }
 }

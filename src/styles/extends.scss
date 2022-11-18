@@ -12,3 +12,17 @@
   color: $error;
   font-size: 0.75em;
 }
+
+%button {
+  @extend %font-family;
+  @extend %border-radius;
+
+  background-color: $button;
+  color: $white;
+  padding: 4px;
+  font-size: 1em;
+
+  &:disabled {
+    opacity: 50%;
+  }
+}
