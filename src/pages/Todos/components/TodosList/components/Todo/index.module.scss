@@ -10,5 +10,10 @@
   &_input {
     @extend %font-family;
     min-width: 0;
+    border: none;
+
+    &:active {
+      border: auto;
+    }
   }
 }
