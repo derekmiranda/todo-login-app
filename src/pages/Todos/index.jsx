@@ -39,8 +39,7 @@ const TodosPage = ({ logout }) => {
     setWritingNewTodo(!writingNewTodo);
   }, [writingNewTodo, resetNewTodo]);
 
-  const saveAndResetStates = useCallback(() => {
-    setWritingNewTodo(false);
+  const saveAndResetState = useCallback(() => {
     updateFilter("");
     saveNewTodo();
   }, [saveNewTodo, updateFilter]);
@@ -61,14 +60,14 @@ const TodosPage = ({ logout }) => {
             onChange={onFilterChange}
           />
           <button className={styles.newBtn} onClick={toggleWritingNewTodo}>
-            New
+            {writingNewTodo ? "Close" : "New"}
           </button>
         </div>
         {writingNewTodo && (
           <UpsertTodo
             task={newTodo}
             onChange={onTodoChange}
-            onSave={saveAndResetStates}
+            onSave={saveAndResetState}
             onReset={resetNewTodo}
           />
         )}
