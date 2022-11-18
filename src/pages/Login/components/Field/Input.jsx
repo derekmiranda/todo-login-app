@@ -1,19 +1,17 @@
 import React from "react";
-import classNames from "classnames";
 
 import styles from "./Input.module.scss";
+import InputWithIcon from "../../../../components/InputWithIcon";
 
-const FieldInput = ({ children, icon: Icon, error = "", ...props }) => {
+const FieldInput = ({ children, error = "", icon, ...props }) => {
+  const inputWithIconProps = {
+    icon,
+    ...props,
+  };
+
   return (
     <div className={styles.wrapper}>
-      {Icon && <Icon className={styles.icon} />}
-      <input
-        type="text"
-        className={classNames(styles.input, {
-          [styles.input__hasIcon]: !!Icon,
-        })}
-        {...props}
-      />
+      <InputWithIcon {...inputWithIconProps} />
       {error && <p className={styles.input_errorMsg}>{error}</p>}
     </div>
   );
