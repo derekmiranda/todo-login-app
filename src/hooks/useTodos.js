@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useImmer } from "immer";
 
 import { generateId } from "/src/utils";
@@ -10,10 +10,17 @@ todo:
 */
 
 function useTodos() {
-  const [todos, setTodos] = useImmer([]);
+  const [allTodos, setAllTodos] = useImmer([]);
+  const [filterStr, setFilterStr] = useState("");
+
+  const filteredTodos = useMemo(() => {
+    return allTodos.filter((todo) => {
+      return todo.message.includes(filterStr);
+    });
+  }, [filterStr, allTodos]);
 
   const addTodo = useCallback((task) => {
-    setTodos((draft) => {
+    setAllTodos((draft) => {
       draft.push({
         id: generateId(),
         task,
@@ -22,20 +29,31 @@ function useTodos() {
   }, []);
 
   const removeTodo = useCallback((id) => {
-    setTodos((draft) => {
+    setAllTodos((draft) => {
       const i = draft.findIndex((todo) => todo.id === id);
       draft.splice(i, 1);
     });
   });
 
   const updateTodo = useCallback((id, message) => {
-    setTodos((draft) => {
+    setAllTodos((draft) => {
       const todo = draft.find((todo) => todo.id === id);
       todo.message = message;
     });
   });
 
-  return { todos, addTodo, removeTodo, updateTodo };
+  const updateFilter = useCallback((newFilter) => {
+    setFilterStr(newFilter);
+  });
+
+  return {
+    allTodos,
+    filteredTodos,
+    addTodo,
+    removeTodo,
+    updateTodo,
+    updateFilter,
+  };
 }
 
 export default useTodos;
