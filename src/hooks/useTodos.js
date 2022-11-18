@@ -37,6 +37,7 @@ function useTodos(initialState = []) {
   }, []);
 
   const updateTodo = useCallback((id, task) => {
+    console.log("t", task);
     if (task.length <= MAX_TODO_LEN) {
       setAllTodos((draft) => {
         const todo = draft.find((todo) => todo.id === id);
