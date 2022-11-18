@@ -1,7 +1,7 @@
 @import "/src/styles/global";
 
 .loginButton {
-  @extend %button;
+  @extend %blue-button;
 
   width: 100%;
   margin-top: 16px;
