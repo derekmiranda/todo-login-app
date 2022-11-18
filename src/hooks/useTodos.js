@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { useImmer } from "immer";
+import { useImmer } from "use-immer";
 
 import { generateId } from "/src/utils";
 
@@ -11,13 +11,13 @@ todo:
 
 function useTodos() {
   const [allTodos, setAllTodos] = useImmer([]);
-  const [filterStr, setFilterStr] = useState("");
+  const [filter, setFilter] = useState("");
 
   const filteredTodos = useMemo(() => {
     return allTodos.filter((todo) => {
-      return todo.message.includes(filterStr);
+      return todo.message.includes(filter);
     });
-  }, [filterStr, allTodos]);
+  }, [filter, allTodos]);
 
   const addTodo = useCallback((task) => {
     setAllTodos((draft) => {
@@ -33,18 +33,18 @@ function useTodos() {
       const i = draft.findIndex((todo) => todo.id === id);
       draft.splice(i, 1);
     });
-  });
+  }, []);
 
   const updateTodo = useCallback((id, message) => {
     setAllTodos((draft) => {
       const todo = draft.find((todo) => todo.id === id);
       todo.message = message;
     });
-  });
+  }, []);
 
   const updateFilter = useCallback((newFilter) => {
-    setFilterStr(newFilter);
-  });
+    setFilter(newFilter);
+  }, []);
 
   return {
     allTodos,
@@ -52,6 +52,7 @@ function useTodos() {
     addTodo,
     removeTodo,
     updateTodo,
+    filter,
     updateFilter,
   };
 }
