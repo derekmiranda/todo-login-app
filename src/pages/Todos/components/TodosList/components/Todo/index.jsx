@@ -21,6 +21,18 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
     }
   }, []);
 
+  const onKeyDown = useCallback(
+    (event) => {
+      if (
+        (event.key === "Enter" || event.key === "Escape") &&
+        inputRef.current
+      ) {
+        inputRef.current.blur();
+      }
+    },
+    [inputRef.current]
+  );
+
   const focusInput = useCallback(() => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -35,6 +47,7 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
         value={tempTask}
         className={styles.todo_input}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         onBlur={commitTask}
         data-update-id={todo.id}
       />
