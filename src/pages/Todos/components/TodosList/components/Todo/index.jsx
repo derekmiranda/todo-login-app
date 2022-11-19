@@ -49,7 +49,6 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
         onChange={onChange}
         onKeyDown={onKeyDown}
         onBlur={commitTask}
-        data-update-id={todo.id}
       />
       <button onClick={focusInput}>Edit</button>
       <button data-remove-id={todo.id} onClick={onRemove}>
