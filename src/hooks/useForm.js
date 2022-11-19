@@ -1,14 +1,16 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 function useForm({ fields = {}, handleSubmit = () => Promise.resolve() } = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const canSubmit = useMemo(() =>
+    Object.values(fields).every((field) => !field.invalid, [fields])
+  );
 
   const onSubmitForm = useCallback(
     async (event) => {
       event.preventDefault();
-      const canSubmit = Object.values(fields).every((field) => !field.invalid);
       if (!canSubmit || loading) return;
       setLoading(true);
       try {
@@ -35,7 +37,7 @@ function useForm({ fields = {}, handleSubmit = () => Promise.resolve() } = {}) {
     onChange: resetState,
   };
 
-  return { data, loading, error, submitProps };
+  return { data, loading, error, canSubmit, submitProps };
 }
 
 export default useForm;
