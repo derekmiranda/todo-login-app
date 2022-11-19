@@ -1,7 +1,9 @@
 @import "./vars.scss";
 @import "./extends.scss";
 
-body {
+body,
+input,
+button {
   @extend %font-family;
 }
 

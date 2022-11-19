@@ -18,7 +18,6 @@ $pad: 4px;
 }
 
 .input {
-  @extend %font-family;
   @extend %border-radius;
 
   width: 100%;
