@@ -10,4 +10,8 @@
   &_input {
     min-width: 0;
   }
+
+  &_saveBtn {
+    @extend %blue-button;
+  }
 }

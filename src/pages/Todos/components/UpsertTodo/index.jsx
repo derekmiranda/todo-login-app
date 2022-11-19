@@ -29,7 +29,11 @@ const UpsertTodo = ({ task, onChange, onSave }) => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={onSave} disabled={!canSave}>
+      <button
+        className={styles.upsert_saveBtn}
+        onClick={onSave}
+        disabled={!canSave}
+      >
         Save
       </button>
     </form>

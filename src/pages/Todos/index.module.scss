@@ -2,7 +2,6 @@
 
 .wrapper {
   @extend %border-radius;
-
   width: $content-width;
   height: 400px;
   border: 1px solid $black;
@@ -15,4 +14,11 @@
   justify-content: space-between;
   padding: calc(2 * $pad);
   border-bottom: 1px solid $black;
+}
+
+.newBtn {
+  @extend %button;
+  background-color: $black;
+  color: $white;
+  padding: $pad;
 }
