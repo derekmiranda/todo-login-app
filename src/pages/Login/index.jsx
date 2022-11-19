@@ -32,7 +32,7 @@ const LoginPage = ({ login }) => {
     [emailProps.value, passwordProps.value]
   );
 
-  const { data, loading, error, submitProps } = useForm({
+  const { data, loading, error, canSubmit, submitProps } = useForm({
     fields: {
       email: emailFormField,
       password: passwordFormField,
@@ -82,7 +82,7 @@ const LoginPage = ({ login }) => {
           />
         </FieldWrapper>
         {/* TODO: use ... to indicate loading */}
-        <LoginButton disabled={loading || !!error}>
+        <LoginButton disabled={loading || !!error || !canSubmit}>
           {loading ? "..." : "Login"}
         </LoginButton>
         {error && <p className={styles.form_error}>{error}</p>}
