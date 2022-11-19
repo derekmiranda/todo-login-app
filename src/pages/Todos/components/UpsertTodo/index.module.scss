@@ -5,9 +5,11 @@
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: $pad;
+  padding: calc(2 * $pad);
 
   &_input {
+    padding: $pad;
+    font-size: 1em;
     min-width: 0;
   }
 

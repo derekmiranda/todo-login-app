@@ -62,6 +62,7 @@ const TodosPage = ({ logout }) => {
       <div className={styles.wrapper}>
         <div className={styles.topRow}>
           <InputWithIcon
+            className={styles.search}
             placeholder="search"
             value={filter}
             onChange={onFilterChange}

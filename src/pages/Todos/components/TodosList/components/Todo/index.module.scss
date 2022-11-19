@@ -5,15 +5,18 @@
   border-bottom: 1px solid $black;
   box-sizing: border-box;
   display: flex;
-  padding: $pad;
+  padding: calc(2 * $pad);
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   &_input {
     min-width: 0;
-    border: none;
+    border-color: transparent;
     text-overflow: ellipsis;
-
-    &:active {
-      border: auto;
-    }
+    font-size: 1em;
+    padding: $pad;
+    margin-right: calc(2 * $pad);
   }
 }
