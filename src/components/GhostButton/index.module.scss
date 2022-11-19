@@ -1,0 +1,12 @@
+@import "/src/styles/global";
+
+.ghost {
+  @extend %button;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #ccc;
+    transition: background-color 0.5s;
+  }
+}
