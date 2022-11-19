@@ -10,7 +10,7 @@ const MAX_PASSWORD_CHARS = 16;
 
 export const validateEmail = (password) => {
   if (!EMAIL_REGEX.test(password)) {
-    return "Not a valid password";
+    return "Not a valid email";
   } else if (password.length > MAX_EMAIL_CHARS) {
     return `Must be at most ${MAX_EMAIL_CHARS} characters`;
   }
