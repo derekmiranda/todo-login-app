@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 
 const GhostButton = ({ children, className, ...props }) => {
   return (
-    <button className={classNames(styles.ghost)} {...props}>
+    <button className={classNames(styles.ghost, className)} {...props}>
       {children}
     </button>
   );

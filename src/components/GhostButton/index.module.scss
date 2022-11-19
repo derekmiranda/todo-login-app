@@ -4,6 +4,7 @@
   @extend %button;
   border: none;
   background-color: transparent;
+  padding: $pad;
 
   &:hover {
     background-color: #ccc;

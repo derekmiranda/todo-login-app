@@ -1,7 +1,10 @@
 import React, { useCallback, useRef, useState } from "react";
 
 import { MAX_TODO_LEN } from "/src/constants";
+import GhostButton from "/src/components/GhostButton";
 import styles from "./index.module.scss";
+import PencilIcon from "../../../Icons/Pencil";
+import TrashIcon from "../../../Icons/Trash";
 
 const Todo = ({ todo, onRemove, onUpdate }) => {
   const inputRef = useRef(null);
@@ -50,10 +53,16 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
         onKeyDown={onKeyDown}
         onBlur={commitTask}
       />
-      <button onClick={focusInput}>Edit</button>
-      <button data-remove-id={todo.id} onClick={onRemove}>
-        Remove
-      </button>
+      <GhostButton onClick={focusInput} className={styles.todo_ghost}>
+        <PencilIcon />
+      </GhostButton>
+      <GhostButton
+        data-remove-id={todo.id}
+        onClick={onRemove}
+        className={styles.todo_ghost}
+      >
+        <TrashIcon />
+      </GhostButton>
     </li>
   );
 };

@@ -18,5 +18,11 @@
     font-size: 1em;
     padding: $pad;
     margin-right: calc(2 * $pad);
+    flex: 1;
+  }
+
+  &_ghost {
+    width: 30px;
+    height: 30px;
   }
 }
