@@ -61,7 +61,7 @@ const Todo = ({ todo, onRemove, onUpdate }) => {
         onClick={onRemove}
         className={styles.todo_ghost}
       >
-        <TrashIcon />
+        <TrashIcon className={styles.todo_svg} />
       </GhostButton>
     </li>
   );

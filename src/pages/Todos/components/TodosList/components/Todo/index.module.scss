@@ -7,10 +7,6 @@
   display: flex;
   padding: calc(2 * $pad);
 
-  &:last-child {
-    border-bottom: none;
-  }
-
   &_input {
     min-width: 0;
     border-color: transparent;
@@ -24,5 +20,9 @@
   &_ghost {
     width: 30px;
     height: 30px;
+  }
+
+  &_svg {
+    pointer-events: none;
   }
 }
