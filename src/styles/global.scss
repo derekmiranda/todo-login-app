@@ -10,3 +10,8 @@ button {
 h1 {
   margin-top: 48px;
 }
+
+button:hover {
+  opacity: 50%;
+  transition: opacity 0.5s;
+}
