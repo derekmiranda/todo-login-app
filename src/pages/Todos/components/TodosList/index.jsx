@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 const TodosList = ({ todos = [], updateTodo, removeTodo }) => {
   const onRemove = useCallback(
     (event) => {
+      console.log("event.target", event.target);
       const removeId = event.target?.dataset.removeId;
       if (removeId) {
         removeTodo(removeId);
