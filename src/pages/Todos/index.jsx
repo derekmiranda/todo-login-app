@@ -10,6 +10,7 @@ import styles from "./index.module.scss";
 import useUpsertTodo from "./components/UpsertTodo/useUpsertTodo";
 import { getStorageItem, setStorageItem } from "/src/utils/storage";
 import { TODOS_STORAGE_KEY } from "/src/constants";
+import SearchIcon from "./components/Icons/Search";
 
 const TodosPage = ({ logout }) => {
   const {
@@ -64,6 +65,7 @@ const TodosPage = ({ logout }) => {
           <InputWithIcon
             className={styles.search}
             placeholder="search"
+            icon={SearchIcon}
             value={filter}
             onChange={onFilterChange}
           />
