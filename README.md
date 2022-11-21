@@ -4,6 +4,7 @@
 
 ```
 npm install && npm start
+// app runs off http://localhost:1234
 ```
 
 ## Notes
